@@ -10,3 +10,4 @@
 1. Etički problemi koji se javljaju
 	1. Problem gde AI oslikava ljudske diskriminatorne stavove
 1. Budućnost AI generatora slika (ZAKLJUČAK)
+# [link do jutjub klipa koji objasnjava kako funkcionisu mreze za generisanje slika](https://www.youtube.com/watch?v=1CIpzeNxIhU)
