@@ -1,5 +1,7 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage[serbian]{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
 
 \title{AI koji generiše sliku na osnovu teksta}
 \author{Budimir Nkola 178/2021\\Trajković Miljan 354/2022\\Cvejić Miloš 346/2021\\Bajić Bogdan 122/2021}
@@ -42,6 +44,7 @@ Dekoder je generativni model realizovan pomenutom tehnikom difuzuje. Naime, slik
 Zato se na samom kraju ovog generatora slika rezolucije 64x64 prolazi kroz jos dva ekspanzivna koraka kojim se slika dovodi na rezoluciju 1024x1024. Ovi koraci su takođe realizovani difuznim tehnikama što doprinosi tome da slika na izlazu ima više detalja i bude maksimalno fotorealistična.\cite{openai_dali}
 
 \pagebreak
+
 \section{Treniranje AI generatora slika}
 
 Kako smo već objasnili neke od modela mašinskog učenja koji se koriste u generatorima slika može samo dodati neke ključne detalje koji su bitni kod ovako velikih projekata.
@@ -55,6 +58,48 @@ Treniranje dekodera svodi se na treniranje difuznog modela. Najbitnije je pomenu
 Takođe, tokom treniranja mreža koje sliku rezolucije 64x64 proširuju na sliku rezolucije 1024x1024, slike koje dolaze na ulaz mogu biti malo zamućene korišćenjem Gausove normalne raspodele. Kao što smo rekli baš zbog ovih difuznih tehnika na izlazu dekodera dobijamo sliku rezolucije 1024x1024 koja je fotorealistična i može sadržati puno detalja.\cite{openai_dali}
 
 \pagebreak
+
+\section{Kako obični ljudi da koriste AI(najpopularniji sajtovi) i primeri}
+Veštačka inteligencija koja generiše slike bila je jedna od gorućih tema u vestima ove godine zbog izuzetno brzog napretka ali i etičkih problema. Međutim, zašto bi, i kako mogli da koristimo ove novotarije?
+Motivacija za korišćenje:
+\begin{itemize}
+  \item Može da generiše realistične, ili čak, hiperrealistične slike što se može koristiti u svrhu razvoja moderne umetnosti (npr. u filmovima za stvaranje zanimljivijih i privlačnijih scena natprirodnih pojava).
+  \item AI “razmišlja” van okvira što mu dozvoljava da generiše neke nikada pre viđene stvari koje mogu biti značajna inspiracija za nove ideje i projekte, kao i potencijalno otvaranje potpuno novih pravaca u umetnosti.
+  \item AI takođe konstanto evoluira i stvara nove i naprednije podatke, koje koristi da bi napredovao dalje. Tehnički, ovo mu omogućava da stalno proizvodi nove ideje bez zasićenja, dakle izbegava “autorsku blokadu”.
+\end{itemize}
+
+Neki od izazova:
+\begin{itemize}
+    \item Iako bi veštački genersiane slike mogle da zavaraju bilo kog čoveka, ipak će njima faliti ljudski dodir odnosno emocija kao i priča koja stoji iza stvaranja tog dela
+    \item Čovek nema nikakvu kontrolu nad kreativnim procesom što znači da će AI stvarati isključivo na osnovu podataka pomoću kojih je istreniran, što takođe može dovesti do ponavljanja istih stvari u različitom svetlu, ili stvaranja besmislenih i dosadnih slika.
+    \item Etički problemi su svakako neizostavna stavka svake konverzacije o veštačkoj inteligenciji. Pitanja koja ovde postavljamo tiču se autorskih prava, prodavanja veštački generisanih slika i njihova zloupotreba. 
+\end{itemize}
+
+\subsection{DALL-E 2}
+DALL-E 2 kompanije OpenAI\cite{OpenAI} jedno je od glavnih imena u ovom prostoru. Da budem iskren, čitav proces je zapravo prilično jednostavan – unesemo opis željene stvari i dobijemo sliku toga. Ali, ima još par stvari koje treba da držimo na umu da bi postigli savršen rezultat. Prvo, prijavimo se na zvanični sajt. Korišćenje AI-a nije u potpunosti besplatno. Po otvaranju naloga dobijate 50 “kredita” i svakog meseca po 15, s tim što se taj kredit ne prenosi, dok se kupljeni kredit prenosi ( npr. možete kupiti 115 kredita za 15 dolara). Jedan kredit vam daje i jednu veštački generisanu sliku. Dužina samog opisa tj. prompt-a je 400 karaktera, a sam prompt može da primi “sadržaj” i “modifikatore”. Sadržaj je npr. “jež koji koristi digitron”, a modifikator “iz ptičije perspektive, naslikano uljanim bojama u stilu Van Goga” (naravno, podrazumeva se da se reči unose na engleskom)\cite{Prompt}. Postoje i posebne knjige, kao i eksperti, koji vam mogu pomoći kako da unesete savršeni prompt. Jedan od načina da postavite atmosferu jeste da koristite reči koje predstavljaju emocije ili vremensko razdoblje. Takođe možete i da unesete konkretni objektiv za kameru ili naziv pametnog telefona ako želite da izgleda kao da je uslikano time. Neverovatna stvar kod DALL-E 2 je što takođe prima i slike kao ulaz, koje možete da uređujete tako što izaberete određeni deo slike a zatim unesete šta biste želeli da se tu nađe, ili čak da proširujete slike. Veštačka inteligencija je toliko dobro istrenirana da će se promene savršeno, ili bar dovoljno realno uklopiti. 
+\subsection{Midjourney}
+Midjourney je AI alatka koja funkcioniše isključivo na digitalnoj platformi Discord. Ako imate nalog na Discord-u, sve što treba da uradite jeste da se preko zvaničnog sajta za Midjourney prijavite. Ostatak procesa instalacije je veoma intuitivan. Sam  AI funkcioniše slično kao i prethodno pomenuti DALL-E 2 samo što se ceo proces ne odvija na sajtu već u aplikaciji. Ipak,  Midjourney može samo da generiše sliku(ali vam svaki pokušaj daje po četiri slike), i nudi vam 25 besplatnih pokušaja. Rezoluciju generisane slike možete i da povećate na bolju i pregledniju, kao i da tražite novu verziju, baziranu na jednoj od  prethodnih, i u nekom smislu, unapređeniju. Ono po čemu se razlikuje od DALL-E 2 je što se manje fokusira na realizam a više na maštovitiju i raznobojniju kreaciju.
+\subsection{Stable Diffusion}
+Ono na čemu se baziraju svi jaki modeli za generisanje slika (pa i prethodno pomenuti) jeste model dubokog učenja Stable diffusion. Najvažnija razlika od ostalih jeste da je on potpuno open-source što posebno doprinosi njegovom daljem razvoju, kao i čitavoj zabavi. Pored toga što je neverovatno zanimljiv za korišćenje, on takođe daje opciju da kao unos upotrebite neku ličnu sliku i manipulišete njome. Sam model možete koristiti na svom računaru preuzimanjem sa Git-a, ili na zvaničnom veb-sajtu, a za ljude devijantnog karaktera postoji čak i necenzurisana verzija.
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ DALL-E 2 & \href{https://openai.com/dall-e-2/}{Link} \\
+ Midjourney & \href{https://www.midjourney.com/}{Link} \\
+ Stable Diffusion & \href{https://beta.dreamstudio.ai/dream}{Link} \\
+ \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{astronaut.png}
+\caption{Poređenje ova tri AI generatora}
+\label{fig: Astronaut}
+\end{figure}
+
+\pagebreak
+
 \section{Etički problemi sa veštačko inteligentnim generatorima slika}
 
 AI generatori slika mogu doprineti diskriminaciji tako što oponašaju štetne stereotipe koje je AI prikupio u kolekcijama podataka, koji sami imaju predrasude iz svakodnevnog života.
@@ -104,6 +149,10 @@ Text and Images. Dostoupno na adresi https://openai.com/blog/clip/
 \bibitem{difvideo} AssemblyAI, Diffusion models explained in 4-difficulty levels. Dostupno na adresi\begin{verbatim} https://www.youtube.com/watch?v=yTAMrHVG1ew&t=53s/
 \end{verbatim}
 
+\bibitem{OpenAI}Zvanični sajt kompanije OpenAI:\begin{verbatim}https://openai.com/\end{verbatim}
+
+\bibitem{Prompt}Knjiga je besplatna i dostupna na adresi:\begin{verbatim}https://dallery.gallery/the-dalle-2-prompt-book/\end{verbatim}
+
 \bibitem{kljuc1} Rune Klingenberg Hansen, AI Image Generator: This Is Someone Thinking About Data Ethics. Dostupno na adresi https://dataethics.eu/ai-image-generator-this-is-someone-thinking-about-data-ethics/
 
 \bibitem{dalle} DALL-E 2. Dodatne informacije dostupne na adresi https://openai.com/dall-e-2/
@@ -115,5 +164,4 @@ Text and Images. Dostoupno na adresi https://openai.com/blog/clip/
 \end{thebibliography}
 
 \end{document}
-
 
