@@ -101,11 +101,27 @@ Na primeru konkretnog generatora DALL-E 2 možemo videti prethodno opisane mrež
 
 Za pocetak posmatraćemo takozvanu CLIP mrežu (skraćeno od Contrastive Language–Image Pre-training), koja je izuzetno bitna za treniranje osnovnih komponenti ovog generatora. Njen osnovni zadatak je da zadatu sliku poveže sa odgovarajućim unetim opisom. Primetimo da se na neki način generisanje slika može smatrati suprotnim procesom od pomenutog, a razlog zašto je ova mreža od ključnog značaja prilikom generisanja ćemo videti u nastavku teksta. Na ulazu CLIP mreže nalaze se dva kodera koji kodiraju zadatu sliku i njen opis u odgovarajući \textit{imbeding}\footnote{imbeding (eng. embedding) - rezultat preslikavanja skupa informacija u računarski zapis, vektor}, zasebice. Prilikom treniranja, CLIP nastoji da pomenute kodere nauči da imbeding slike i imbeding njenog opisa budu što sličniji jedan drugom.\cite{clip, openai_dali}
 
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.6\textwidth]{clip.png}
+\caption{Slika preuzeta sa OpenAI blog stranice}
+\label{fig: clipslika}
+\end{figure}
+
+\pagebreak
+
 Sama arhitektura Dall-E 2 softvera se sastoji iz dva dela: Prvi deo čini mreža prior\footnote{prior - označava ono što je pre nečega po redu ili hronološki.} koji na ulazu prima tekst imbeding (formiran CLIP kodiranjem tekstualnog opisa željene slike) koji preslikava u imbeding slike koji prosleđuje drugom delu ovog generatora - dekoderu. Sada dolazimo do ključnog značaja CLIP mreže. OpenAI tim se zapitao, da li je prior u ovom pristupu uopšte potreban. Iz tog razloga pokušali su da dekoderu proslede samo tekstualni opis, zatim tekstualni opis i tekst imbeding, a na kraju i imbeding slike dobijen pomoću prior-a. Iz tog eksperimenta su zaključili da slike generisane imbedingom slike daju značajno bolje rezulate u odnosu na druga dva slučaja.\cite{openai_dali}
 
 Dekoder je generativni model realizovan pomenutom tehnikom difuzuje. Naime, slike se generišu iz nasumične količine \textit{Gausovog šuma}\footnote{Gausov šum (engl. Gaussian noise) - šum raspoređen korišćenjem Gausove normalne raspodele}. Zadatak generatornog dela je da pretpostavi koliko šuma je na slici i otkloni ga. Ovo je vrlo težak problem koji se uspešno rešava upravo difuzno i to na sledeći način: Otklanjanje šuma vrši se iterativno\cite{gen1}. U svakoj iteraciji pretpostavlja se koliko šuma je na slici koji se otklanja, a zatim se na dobijenu sliku dodaje skoro malo manja količina Gausovog šuma od prethodnog i prelazi u sledeću iteraciju. Kako bi dekoder znao šta uopšte treba da generiše, odnosno “šta se nalazi ispod šuma” prosleđuje mu se uslov. Kod ranijih projekata kao što su GLIDE i DALL-E\cite{openai_glide, openai_dali}, dekoderu se kao uslov direktno prosleđivao tekstualni opis željene slike. Dok se kod ovog modela zahvaljujući CLIP i prior mreži generatoru dodatno prosleđuju CLIP imbeding slike i teksta. Generisanje različitih slika i variranje u odnosu na jednu generisanu sliku se postiže tako što se dobijena slika propušta kroz CLIP koder kako bi se dobio njen imbeding slike, a onda se proces generisanja ponavlja sa novonastalim imbedingom. Na ovaj način dobija se slika koja ima iste elemente i stil prethodne slike, a različit raspored i neke trivijalne detalje koji se gube CLIP kodiranjem. Izlaz opisanog dela dekodera je slika formata 64x64.
 
 Zato se na samom kraju ovog generatora slika rezolucije 64x64 prolazi kroz jos dva ekspanzivna koraka kojim se slika dovodi na rezoluciju 1024x1024. Ovi koraci su takođe realizovani difuznim tehnikama što doprinosi tome da slika na izlazu ima više detalja i bude maksimalno fotorealistična.\cite{openai_dali}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=1\textwidth]{dalle2.png}
+\caption{Prikaz DALL-E 2 modela iz ptičije perspektive}
+\label{fig: dalle2slika}
+\end{figure}
 
 \pagebreak
 
