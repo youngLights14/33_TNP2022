@@ -3,14 +3,15 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 
-\title{AI koji generiše sliku na osnovu teksta}
-\author{Budimir Nkola 178/2021\\Trajković Miljan 354/2022\\Cvejić Miloš 346/2021\\Bajić Bogdan 122/2021}
-
 \begin{document}
 
-
+\title{AI koji generiše sliku na osnovu teksta}
+\author{Budimir Nkola 178/2021\\ \and Trajković Miljan 354/2022 \and Cvejić Miloš 346/2021\\ \and Bajić Bogdan 122/2021}
 \maketitle
 
+\begin{abstract}
+    Ovaj rad je napisan sa ciljem da vas upozna sa jednom aktuelnom primenom veštačke inteligencije. Ukratko će vam biti objašnjeno kako se ovakav sistem razvija, kako funkcioniše i kako ga i vi možete koristiti, a zatim vas će i sprovesti kroz probleme koje donosi sa sobom.
+\end{abstract}
 \begin{tableofcontents}
 \end{tableofcontents}
 
@@ -140,36 +141,35 @@ Takođe, tokom treniranja mreža koje sliku rezolucije 64x64 proširuju na sliku
 \pagebreak
 
 \section{Kako bilo ko može da koristi AI za generisanje slika}
-Veštačka inteligencija koja generiše slike bila je jedna od gorućih tema u vestima ove godine zbog izuzetno brzog napretka ali i etičkih problema. Međutim, zašto bi, i kako, mogli da koristimo ove novotarije?
+Veštačka inteligencija koja generiše slike bila je jedna od gorućih tema u vestima ove godine zbog izuzetno brzog napretka ali i etičkih problema koje može da donese. Međutim, zašto bi, i kako, mogli da koristimo ove novotarije?
 
 Motivacija za korišćenje:
 \begin{itemize}
   \item[-] Može da generiše realistične, ili čak, hiperrealistične slike što se može koristiti u svrhu razvoja moderne umetnosti (npr. u filmovima za stvaranje zanimljivijih i privlačnijih scena natprirodnih pojava).
-  \item[-] AI “razmišlja” van okvira što mu dozvoljava da generiše neke nikada pre viđene stvari koje mogu biti značajna inspiracija za nove ideje i projekte, kao i potencijalno otvaranje potpuno novih pravaca u umetnosti.
-  \item[-] AI takođe konstanto evoluira i stvara nove i naprednije podatke, koje koristi da bi se unapređivao dalje. Tehnički, ovo mu omogućava da stalno proizvodi nove ideje, bez zasićenja, dakle izbegava “autorsku blokadu”.
+  \item[-] Sposobnost konstantnog napredovanja AI-a mu dozvoljava da stalno proizvodi nove ideje, neke nikada pre viđene stvari, koje mogu biti ogromna inspiracija.
 \end{itemize}
 
 Neki od izazova:
 \begin{itemize}
-    \item[-] Iako bi veštački genersiane slike mogle da zavaraju bilo kog čoveka, ipak će njima faliti ljudski dodir odnosno emocija kao i priča koja stoji iza stvaranja tog dela.
-    \item[-] Čovek nema nikakvu kontrolu nad kreativnim procesom što znači da će AI stvarati isključivo na osnovu podataka pomoću kojih je istreniran, što takođe može dovesti do ponavljanja istih stvari u različitom svetlu, ili stvaranja besmislenih i dosadnih slika.
-    \item[-] Etički problemi su svakako neizostavna stavka svake konverzacije o veštačkoj inteligenciji. Pitanja koja ovde postavljamo tiču se autorskih prava, prodavanja veštački generisanih slika i njihova zloupotreba. 
+    \item[-] Bez obzira na kvalitet slika, one ipak iza sebe neće imati priču ili emocije.
+    \item[-] AI stvara isključivo na osnovu podataka koje poseduje što može dovesti do manjka originalnosti.
+    \item[-] Etički problemi koji se tiču kršenja autorskih prava, kao i raznih načina zloupotrebe veštački generisanih slika. 
 \end{itemize}
 
 \subsection{DALL-E 2}
-\textbf{DALL-E 2} kompanije OpenAI jedno je od glavnih imena u ovom prostoru. Čitav proces je zapravo prilično jednostavan – unesemo opis željene stvari i dobijemo sliku toga. Ali, ima još par stavki koje treba da držimo na umu da bi postigli savršen rezultat. 
+\textbf{DALL-E 2} kompanije OpenAI jedno je od glavnih imena u ovom prostoru. Čitav proces generisanja je zapravo prilično jednostavan – unesemo opis željene stvari i dobijemo sliku toga. Ali, ima još par stavki koje treba da držimo na umu da bismo postigli savršen rezultat.
 
-Prvo, prijavimo se na zvanični sajt. Korišćenje AI-a nije u potpunosti besplatno. Po otvaranju naloga dobijate 50 “kredita” i svakog meseca po 15, s tim što se taj kredit ne prenosi, dok se kupljeni kredit prenosi (npr. možete kupiti 115 kredita za 15 dolara). Jedan kredit vam daje i jednu veštački generisanu sliku. Dužina samog opisa tj. \textit{prompt-a}\footnote{eng. to prompt - navesti} je 400 karaktera, a sam prompt može da primi \textit{sadržaj} i textit{modifikatore}. Sadržaj je npr. \textit{"usamljeni astrounaut na Marsu"}, a modifikator \textit{"misteriozno, sa puno boja, hiperrealistično"} (naravno, podrazumeva se da se reči unose na engleskom). Postoje i posebne knjige\cite{Prompt}, kao i eksperti, koji vam mogu pomoći kako da unesete savršeni prompt. Jedan od načina da postavite atmosferu jeste da koristite reči koje predstavljaju emocije ili vremensko razdoblje. Takođe možete i da unesete konkretni objektiv za kameru ili naziv pametnog telefona ako želite da izgleda kao da je uslikano time. Neverovatna stvar kod DALL-E 2 je što takođe prima i slike kao ulaz, koje možete da uređujete tako što izaberete određeni deo slike a zatim unesete šta biste želeli da se tu nađe, ili čak da proširujete slike. Veštačka inteligencija je toliko dobro istrenirana da će se promene savršeno, ili bar dovoljno realno uklopiti. 
+Da biste koristili DALL-E 2, sve što je potrebno jeste da se ulogujete na sajt. Dužina samog opisa tj. \textit{prompt-a}\footnote{eng. to prompt - navesti} je 400 karaktera, a sam prompt može da primi \textit{sadržaj} i \textit{modifikatore}. Sadržaj je npr. \textit{"usamljeni astrounaut na Marsu"}, a modifikator \textit{"misteriozno, sa puno boja, hiperrealistično"} (naravno, podrazumeva se da se reči unose na engleskom). Postoje i posebne knjige\cite{Prompt}, kao i eksperti, koji vam mogu pomoći kako da unesete savršeni prompt. Jedan od načina da postavite atmosferu jeste da koristite reči koje predstavljaju emocije ili vremensko razdoblje. DALL-E 2 kao ulaz može da primi i sliku.
 \subsection{Midjourney}
-\textbf{Midjourney} je AI alatka koja funkcioniše isključivo na digitalnoj platformi Discord\footnote{Discord(transkribovano Diskord) je platforma namenjena za komunikaciju, prevenstveno među ljudima koji igraju video igre.}. Ako imate nalog na Discord-u, sve što treba da uradite jeste da se preko zvaničnog sajta za Midjourney prijavite. Ostatak procesa instalacije je veoma intuitivan. Sam  AI funkcioniše slično kao i prethodno pomenuti DALL-E 2 samo što se ceo proces ne odvija na sajtu već u aplikaciji. Ipak,  Midjourney može samo da generiše sliku(ali vam svaki pokušaj daje po četiri slike), i nudi vam 25 besplatnih pokušaja. Rezoluciju generisane slike možete i da povećate na bolju i pregledniju, kao i da tražite novu verziju, baziranu na jednoj od  prethodnih, i u nekom smislu, unapređeniju. Ono po čemu se razlikuje od DALL-E 2 je što se manje fokusira na realizam a više na maštovitiju i raznobojniju kreaciju.
+\textbf{Midjourney} je AI alatka koja funkcioniše isključivo na digitalnoj platformi Discord\footnote{Discord(transkribovano Diskord) je platforma namenjena za komunikaciju, prevenstveno među ljudima koji igraju video igre.}. Ako imate nalog na Diskordu, sve što treba da uradite jeste da se prijavite preko zvaničnog sajta za Midjourney. Ostatak procesa instalacije je veoma intuitivan. Sam  AI funkcioniše slično kao i prethodno pomenuti DALL-E 2 samo što se ceo proces ne odvija na sajtu već u aplikaciji. Midjourney uvek generiše 4 slične slike. Ako vam se rezultat dopao, možete da povečate rezoluciju slike, ili da tražite da generiše novu, baziranu na stilu one koje ste izabrali. Ono po čemu se razlikuje od DALL-E 2 je što se manje fokusira na realizam a više na maštovitiju i raznobojniju kreaciju.
 \subsection{Stable Diffusion}
-Ono na čemu se baziraju svi jaki modeli za generisanje slika (pa i prethodno pomenuti) jeste model dubokog učenja \textbf{Stable diffusion}. Najvažnija razlika od ostalih jeste da je on potpuno open-source\footnote{open-source - programi čiji je kod svakome dostupan za potencijalnu modifikaciju i distribuciju.} što posebno doprinosi njegovom daljem razvoju, kao i čitavoj zabavi. Pored toga što je neverovatno zanimljiv za korišćenje, on takođe daje opciju da kao unos upotrebite neku ličnu sliku i manipulišete njome. Sam model možete koristiti na svom računaru preuzimanjem sa Git-a, ili na zvaničnom veb-sajtu, a za ljude devijantnog karaktera postoji čak i necenzurisana verzija.
+Svi jaki modeli za generisanje slika baziraju se na modelu dubokog učenja \textbf{Stable diffusion}. Najvažnija razlika od ostalih jeste da je on potpuno open-source\footnote{open-source - programi čiji je kod svakome dostupan za potencijalnu modifikaciju i distribuciju.} što posebno doprinosi njegovom daljem razvoju, kao i čitavoj zabavi. Pored toga što je neverovatno zanimljiv za korišćenje, on takođe daje opciju da kao unos upotrebite neku ličnu sliku i manipulišete njome. Sam model možete koristiti na svom računaru preuzimanjem sa Git-a, ili na zvaničnom veb-sajtu.
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
  \hline
- DALL-E 2 & \href{https://openai.com/dall-e-2/}{Beskrajno mogućnosti!} \\
- Midjourney & \href{https://www.midjourney.com/}{Za maštovite!} \\
- Stable Diffusion & \href{https://beta.dreamstudio.ai/dream}{Isprobajte!} \\
+ DALL-E 2 & \href{https://openai.com/dall-e-2/}{openai.com/dall-e-2} \\
+ Midjourney & \href{https://www.midjourney.com/}{midjourney.com} \\
+ Stable Diffusion & \href{https://beta.dreamstudio.ai/dream}{beta.dreamstudio.ai/dream} \\
  \hline
 \end{tabular}
 \end{center}
@@ -207,13 +207,11 @@ Ukoliko bismo živeli u svetu gde je čovek podjednako inteligentan kao veštač
 
 Generatori slika stvarno kreiraju problem celokupnoj kreativnoj industriji, ali treba na veštačku inteligenciju posmatrati kao na još jednu alatku koju umetnik može da koristi. Možda upravo uz pomoć veštačke inteligencija umetnost može postani brža, dostupnija i otvorenija \cite{fear}.
 
-\pagebreak
-
 \section{Zaključak}
 
-Dakle, znamo šta je veštačka inteligencija, kako se ona može upotrebiti(ali i zloupotrebiti) za generisanje slika, kako radi, kao i par naših omiljenih primera. Naravno, i dalje postoji mnoga ograničenja, ali i mogućnosti za napredak u oblasti AI-a. Jedna od tih oblasti je generisanje videa iz unetog teksta na čemu radi poznata kompanija Meta\footnote{Meta, nekada Facebook, jedna je od vodećih svetskih biznis magnata u oblasti razvoja veštačke inteligencije i tehnologije.}. 
+Dakle, znamo šta je veštačka inteligencija, kako se ona može upotrebiti(ali i zloupotrebiti) za generisanje slika, kako radi, kao i par naših omiljenih primera. Naravno, i dalje postoje mnoga ograničenja, ali i mogućnosti za napredak u oblasti AI-a. Jedna od tih oblasti je generisanje videa iz unetog teksta na čemu radi poznata kompanija Meta\footnote{Meta, nekada Facebook, jedna je od vodećih svetskih biznis magnata u oblasti razvoja veštačke inteligencije i tehnologije.}. 
 
-Oduprećemo se želji da vodimo debatu o tome kako će sve ovo uticati na kreativnu industriju. Međutim, istorija nam sugeriše da pojava novih alata ima tendenciju da proširi definiciju umetnosti. Dakle, \textit{"umetnost nije mrtva, samo je mašinski generisana"}\cite{clanaknov}.
+Oduprećemo se želji da vodimo debatu o tome kako će sve ovo uticati na kreativnu industriju. Međutim, istorija nam sugeriše da pojava novih alata ima tendenciju da proširi definiciju umetnosti, odnosno \textit{"umetnost nije mrtva, samo je mašinski generisana"}\cite{clanaknov}.
 
 \pagebreak
 \begin{thebibliography}{10}
