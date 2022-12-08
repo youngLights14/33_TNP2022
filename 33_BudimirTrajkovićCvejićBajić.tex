@@ -44,10 +44,11 @@ AI generator slika predstavlja program koji generiše sliku na osnovu zahteva za
 Neki od poznatih programa za generisanje slika na osnovu zadatog teksta su: 
 
 \begin{itemize} 
-\item[-] Jasper Art  
+\item[-] Dall-E  
+\item[-] Jasper Art
 \item[-] Starry AI 
-\item[-] Nightcafe 
-\item[-] Dall-E 
+\item[-] Midjourney
+ 
 \end{itemize} 
 
 \section{Kako funkcionišu AI generatori slika}
@@ -55,20 +56,20 @@ Neki od poznatih programa za generisanje slika na osnovu zadatog teksta su:
 Mnogi modeli veštačke inteligencije pa tako i generatori slika na osnovu teksta poput \textbf{DALL-E 2} i drugih, zasnovani su na prethodnim istraživanjima i prethodnim modelima.
 Generisanje slika razvijalo se linearno i to prvobitno koriscenjem mreža koje koriste metode suparničkog učenja odnosno “Generative adversarial network” (GANs).
 
-GANs su modeli mašinskog učenja obično sačinjeni od dve mreže, \textit{diskriminatora} i \textit{generatora}, koje međusobnim intereagovanjem treniraju jedna drugu. Naime, ako uzmemo na primer generisanje slika, zadatak diskriminatora je da što sigurnije i preciznije odredi da li je njemu zadata slika, prava fotografija iz neke baze podataka ili je to generisana slika. Sa druge strane, zadatak generatora je da prevari diskriminatora, odnosno da što bolje nauči šta sliku čini “pravom” i tako napravi sliku za koju se ne može utvrditi da li je ona prava ili ne. U tom slučaju interakcija ove dve mreže i njihovo treniranje se može posmatrati kao minimaks igra u kojoj se diskriminator trenira da maksimalno uveća verovatnoću tačnog određivanja klase slika, dok se generator trenira da maksimalno umanji verovatnoću da slike koje je generisao budu klasifikovane od strane diskriminatora kao generisane slike \cite{gan2, ganvideo}.
+GANs su modeli mašinskog učenja obično sačinjeni od dve mreže, \textit{diskriminatora} i \textit{generatora}, koje međusobnim intereagovanjem treniraju jedna drugu. Naime, ako uzmemo na primer generisanje slika, zadatak diskriminatora je da što sigurnije i preciznije odredi da li je njemu zadata slika, prava fotografija iz neke baze podataka ili je to generisana slika. Sa druge strane, zadatak generatora je da prevari diskriminatora, odnosno da što bolje nauči šta sliku čini “pravom” i tako napravi sliku za koju se ne može utvrditi da li je ona prava ili ne. U tom slučaju interakcija ove dve mreže i njihovo treniranje se može posmatrati kao minimaks igra u kojoj se diskriminator trenira da maksimalno uveća verovatnoću tačnog određivanja klase slika, dok se generator trenira da maksimalno umanji verovatnoću da slike koje je generisao budu klasifikovane od strane diskriminatora kao generisane slike \cite{gan}.
 
 Ključna razlika između ovako opisanih mreža i najnovijih AI generatora slika je ta što se klasični GAN modeli obično razvijaju za neku konkretnu kategoriju fotografija(npr. popularni generator ljudskih lica) dok na drugoj strani generatori poput DALL-E 2 su mnogo opštije namene.
 
-Arhitekture najnovijih generatora zasnovane su na jednoj od novijih tehnika nazvanoj difuzija(eng. diffusion) koja je inspirisana oblašću iz fizike - neravnotežna termodinamika. Naime, ako sipamo kap farbe u vodu, zakoni fizike nalažu da će ta kap da \textit{difunduje}\footnote{Difundovanje - proces spontanog raspršivanja materije i energije, prelazak iz zone više u zonu niže energije ili koncentracije} sve dok ne dođe u ravnotežu. Ovaj proces u prirodi je ireverzibilan. U mašinskom učenju, modeli difuzije nastoje da reše upravo ovaj problem, odnosno da nađu način kojim mogu doći do početne kapi farbe \cite{asembli}.
+Arhitekture najnovijih generatora zasnovane su na jednoj od novijih tehnika nazvanoj difuzija(eng. diffusion) koja je inspirisana oblašću iz fizike - neravnotežna termodinamika. Naime, ako sipamo kap farbe u vodu, zakoni fizike nalažu da će ta kap da \textit{difunduje}\footnote{Difundovanje - proces spontanog raspršivanja materije i energije, prelazak iz zone više u zonu niže energije ili koncentracije} sve dok ne dođe u ravnotežu. Ovaj proces u prirodi je ireverzibilan. U mašinskom učenju, modeli difuzije nastoje da reše upravo ovaj problem, odnosno da nađu način kojim mogu doći do početne kapi farbe \cite{difvideo}.
 
 \subsection{Pregled arhitekture DALL-E 2 softvera}
 
-Za pocetak posmatraćemo takozvanu CLIP mrežu (skraćeno od Contrastive Language–Image Pre-training). Njen osnovni zadatak je da zadatu sliku poveže sa odgovarajućim unetim opisom. Primetimo da se na neki način generisanje slika može smatrati suprotnim procesom od pomenutog. Na ulazu CLIP mreže nalaze se dva kodera koji kodiraju zadatu sliku i njen opis u odgovarajući \textit{imbeding}\footnote{imbeding (eng. embedding) - rezultat preslikavanja skupa informacija u računarski zapis, vektor}, zasebice. Prilikom treniranja, CLIP nastoji da pomenute kodere nauči da imbeding slike i imbeding njenog opisa budu što sličniji jedan drugom.
+Za pocetak posmatraćemo takozvanu CLIP mrežu (skraćeno od Contrastive Language–Image Pre-training). Njen osnovni zadatak je da zadatu sliku poveže sa odgovarajućim unetim opisom. Primetimo da se na neki način generisanje slika može smatrati suprotnim procesom od pomenutog. Na ulazu CLIP mreže nalaze se dva kodera koji kodiraju zadatu sliku i njen opis u odgovarajući \textit{imbeding}\footnote{imbeding (eng. embedding) - rezultat preslikavanja skupa informacija u računarski zapis, vektor}, zasebice. Prilikom treniranja, CLIP nastoji da pomenute kodere nauči da imbeding slike i imbeding njenog opisa budu što sličniji jedan drugom\cite{openai_dali}.
 
 
 Sama arhitektura Dall-E 2 softvera se sastoji iz dva dela: Prvi deo čini mreža prior\footnote{prior - označava ono što je pre nečega po redu ili hronološki.} koji na ulazu prima tekst imbeding (formiran CLIP kodiranjem tekstualnog opisa željene slike) koji preslikava u imbeding slike koji prosleđuje drugom delu ovog generatora - dekoderu. Sada dolazimo do ključnog značaja CLIP mreže. OpenAI tim se zapitao, da li je prior u ovom pristupu uopšte potreban. Iz tog razloga pokušali su da dekoderu proslede samo tekstualni opis, zatim tekstualni opis i tekst imbeding, a na kraju i imbeding slike dobijen pomoću prior-a. Iz tog eksperimenta su zaključili da slike generisane imbedingom slike daju značajno bolje rezulate u odnosu na druga dva slučaja.
 
-Dekoder je generativni model realizovan pomenutom tehnikom difuzuje. Naime, slike se generišu iz nasumične količine \textit{Gausovog šuma}\footnote{Gausov šum (engl. Gaussian noise) - šum raspoređen korišćenjem Gausove normalne raspodele}. Zadatak generatornog dela je da pretpostavi koliko šuma je na slici i otkloni ga. Ovo je vrlo težak problem koji se uspešno rešava upravo difuzno i to na sledeći način: Otklanjanje šuma vrši se iterativno \cite{gen1}. U svakoj iteraciji pretpostavlja se koliko šuma je na slici koji se otklanja, a zatim se na dobijenu sliku dodaje skoro malo manja količina Gausovog šuma od prethodnog i prelazi u sledeću iteraciju. Kako bi dekoder znao šta uopšte treba da generiše, odnosno “šta se nalazi ispod šuma” prosleđuje mu se uslov. Kod ranijih projekata kao što su GLIDE i DALL-E \cite{openai_glide}, dekoderu se kao uslov direktno prosleđivao tekstualni opis željene slike. Dok se kod ovog modela zahvaljujući CLIP i prior mreži generatoru dodatno prosleđuju CLIP imbeding slike i teksta. Generisanje različitih slika i variranje u odnosu na jednu generisanu sliku se postiže tako što se dobijena slika propušta kroz CLIP koder kako bi se dobio njen imbeding slike, a onda se proces generisanja ponavlja sa novonastalim imbedingom. Na ovaj način dobija se slika koja ima iste elemente i stil prethodne slike, a različit raspored i neke trivijalne detalje koji se gube CLIP kodiranjem. Izlaz opisanog dela dekodera je slika formata 64x64.
+Dekoder je generativni model realizovan pomenutom tehnikom difuzuje. Naime, slike se generišu iz nasumične količine \textit{Gausovog šuma}\footnote{Gausov šum (engl. Gaussian noise) - šum raspoređen korišćenjem Gausove normalne raspodele}. Zadatak generatornog dela je da pretpostavi koliko šuma je na slici i otkloni ga. Ovo je vrlo težak problem koji se uspešno rešava upravo difuzno i to na sledeći način: Otklanjanje šuma vrši se iterativno. U svakoj iteraciji pretpostavlja se koliko šuma je na slici koji se otklanja, a zatim se na dobijenu sliku dodaje skoro malo manja količina Gausovog šuma od prethodnog i prelazi u sledeću iteraciju. Kako bi dekoder znao šta uopšte treba da generiše, odnosno “šta se nalazi ispod šuma” prosleđuje mu se uslov. Kod ranijih projekata kao što su GLIDE i DALL-E \cite{openai_glide}, dekoderu se kao uslov direktno prosleđivao tekstualni opis željene slike. Dok se kod ovog modela zahvaljujući CLIP i prior mreži generatoru dodatno prosleđuju CLIP imbeding slike i teksta. Generisanje različitih slika i variranje u odnosu na jednu generisanu sliku se postiže tako što se dobijena slika propušta kroz CLIP koder kako bi se dobio njen imbeding slike, a onda se proces generisanja ponavlja sa novonastalim imbedingom. Na ovaj način dobija se slika koja ima iste elemente i stil prethodne slike, a različit raspored i neke trivijalne detalje koji se gube CLIP kodiranjem. Izlaz opisanog dela dekodera je slika formata 64x64\cite{openai_dali}.
 
 Zato se na samom kraju ovog generatora slika rezolucije 64x64 prolazi kroz jos dva ekspanzivna koraka kojim se slika dovodi na rezoluciju 1024x1024. Ovi koraci su takođe realizovani difuznim tehnikama što doprinosi tome da slika na izlazu ima više detalja i bude maksimalno fotorealistična.
 
@@ -81,11 +82,11 @@ Zato se na samom kraju ovog generatora slika rezolucije 64x64 prolazi kroz jos d
 
 \section{Treniranje AI generatora slika}
 
-Za trening softvera kao što je generator slika neophodne su ogromne baze podataka slika koje su pažljivo birane za ovaj trening. Naravno, kreiranje ovakvih baza podataka i prikupljanje slika generalno zahteva veliki broj ljudi. Jedna od najzahtevnijih baza jeste The ImageNet baza slika na kojoj je radilo preko 25 hiljada ljudi koji su skupili 14 miliona slika na kojima se može naći dvadeset dve hiljade različitih objekata. 
+Za trening softvera kao što je generator slika neophodne su ogromne baze podataka slika koje su pažljivo birane za ovaj trening. Naravno, kreiranje ovakvih baza podataka i prikupljanje slika generalno zahteva veliki broj ljudi. Jedna od najzahtevnijih baza jeste The ImageNet baza slika na kojoj je radilo preko 25 hiljada ljudi koji su skupili 14 miliona slika na kojima se može naći dvadeset dve hiljade različitih objekata\cite{clip}. 
 
 Već smo pričali o CLIP mreži. Tokom njenog treniranja ona prima parove slika i njihovih opisa. Te parove mreža pronalazi na internetu. Možemo primetiti da slike dobijene Gugl pretragom, kao i slike na društvenim mrežama poput Instagrama i Tvitera gotovo uvek imaju opise i lako im se pristupa. Samim tim trošak na građenje iscrpnih baza slika potpuno je prevaziđen.
 
-Treniranje dekodera svodi se na treniranje difuznog modela. Bitno je pomenuti jednu difuznu tehniku zvanu navođenje bez klasifikatora(eng. Classifier-free guidance). Ova tehnika podrazumeva da se generatoru u određenom broju slučaja prosleđeni CLIP imbeding postavljaju na nulu, čime je generator forsiran da napravi sliku samo na osnovu teksta. A tokom treniranja 50\% posto generacija izvršava se bez teksta, odnosno samo pomoću CLIP imbedinga.
+Treniranje dekodera svodi se na treniranje difuznog modela. Bitno je pomenuti jednu difuznu tehniku zvanu navođenje bez klasifikatora(eng. Classifier-free guidance). Ova tehnika podrazumeva da se generatoru u određenom broju slučaja prosleđeni CLIP imbeding postavljaju na nulu, čime je generator forsiran da napravi sliku samo na osnovu teksta. A tokom treniranja 50\% posto generacija izvršava se bez teksta, odnosno samo pomoću CLIP imbedinga\cite{openai_dali}.
 
 Takođe, tokom treniranja mreža koje sliku rezolucije 64x64 proširuju na sliku rezolucije 1024x1024, slike koje dolaze na ulaz mogu biti malo zamućene korišćenjem Gausove normalne raspodele. Kao što smo rekli baš zbog ovih difuznih tehnika na izlazu dekodera dobijamo sliku rezolucije 1024x1024 koja sadrži puno detalja.
 
@@ -103,7 +104,7 @@ Dok su neki od izazova da bez obzira na kvalitet slika, one ipak iza sebe neće 
 Da biste koristili DALL-E 2, sve što je potrebno jeste da se ulogujete na sajt. Dužina samog opisa tj. \textit{prompt-a}\footnote{eng. to prompt - navesti} je 400 karaktera, a sam prompt može da primi \textit{sadržaj} i \textit{modifikatore}. Sadržaj je npr. \textit{"usamljeni astrounaut na Marsu"}, a modifikator \textit{"misteriozno, sa puno boja, hiperrealistično"} (naravno, podrazumeva se da se reči unose na engleskom). 
 
 \subsection{Midjourney}
-\textbf{Midjourney} je AI alatka koja funkcioniše isključivo na digitalnoj platformi Discord\footnote{Discord(transkribovano Diskord) je platforma namenjena za komunikaciju.}. Ako imate nalog na Diskordu, sve što treba da uradite jeste da se prijavite preko zvaničnog sajta za Midjourney. Sam  AI funkcioniše slično kao i prethodno pomenuti DALL-E 2 samo što se ceo proces ne odvija na sajtu već u aplikaciji. Midjourney uvek generiše 4 slične slike. Ako vam se rezultat dopao, možete da povečate rezoluciju slike, ili da tražite da generiše novu. Ono po čemu se razlikuje od DALL-E 2 je što se manje fokusira na realizam a više na maštovitiju i raznobojniju kreaciju.
+\textbf{Midjourney} je AI alatka koja funkcioniše isključivo na digitalnoj platformi Discord\footnote{Discord(transkribovano Diskord) je platforma namenjena za komunikaciju.}. Ako imate nalog na Diskordu, sve što treba da uradite jeste da se prijavite preko zvaničnog sajta za Midjourney. Sam  AI funkcioniše slično kao i prethodno pomenuti DALL-E 2 samo što se ceo proces ne odvija na sajtu već u aplikaciji. Midjourney uvek generiše 4 slične slike. Ako vam se rezultat dopao, možete da povećate rezoluciju slike, ili da tražite da generiše novu. Ono po čemu se razlikuje od DALL-E 2 je što se manje fokusira na realizam a više na maštovitiju i raznobojniju kreaciju.
 
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
@@ -144,15 +145,17 @@ Oduprećemo se želji da vodimo debatu o tome kako će sve ovo uticati na kreati
 
 \bibitem{kljucDva} Dostupno na adresi https://www.cse.unsw.edu.au/~cs9417ml/RL1/introduction.html 
 
-\bibitem{gan2} Scott Reed, Zeynep Akata, Xinchen Yan, Lajanugen Logeswaran, Bernt Schiele, Honglak Lee, Generative Adversarial Text to Image Synthesis. Dostupno na adresi http://proceedings.mlr.press/v48/reed16.pdf/
-
-\bibitem{ganvideo} Computerphile, Generative Adversarial Networks (GANs) - Computerphile. Dostupno na adresi https://www.youtube.com/watch?v=Sw9r8CL98N0/
+\bibitem{gan} Stanislav Frolov, Tobias Hinz, Federico Raue, Jörn Hees, Andreas Dengel, Adversarial text-to-image synthesis: A review. Dostupno na adresi https://www.sciencedirect.com/science/article/pii/S0893608021002823
 
 \bibitem{openai_glide} Alex Nichol, Prafulla Dhariwal, Aditya Ramesh, Pranav Shyam, Pamela Mishkin, Bob McGrew, Ilya Sutskever, Mark Chen, GLIDE: Towards Photorealistic Image Generation and Editing with Text-Guided Diffusion Models. Dostupno na adresi https://arxiv.org/abs/2112.10741/
 
-\bibitem{asembli} AssemblyAI, How does DALL-E 2 actually work? Dostupno na adresi https://www.youtube.com/watch?v=F1X4fHzF4mQ\&t=359s/
+\bibitem{openai_dali} Aditya Ramesh, Prafulla Dhariwal, Alex Nichol, Casey Chu, Mark Chen, Hierarchical Text-Conditional
+Image Generation with CLIP Latents. Dostupno na adresi https://cdn.openai.com/papers/dall-e-2.pdf/
 
 \bibitem{difvideo} AssemblyAI, Diffusion models explained in 4-difficulty levels. Dostupno na adresi https://www.youtube.com/watch?v=yTAMrHVG1ew\&t=53s/
+
+\bibitem{clip} OpenAI, CLIP: Connecting
+Text and Images. Dostoupno na adresi https://openai.com/blog/clip/
 
 \bibitem{kljuc1} Rune Klingenberg Hansen, AI Image Generator: This Is Someone Thinking About Data Ethics. Dostupno na adresi https://dataethics.eu/ai-image-generator-this-is-someone-thinking-about-data-ethics/
 
