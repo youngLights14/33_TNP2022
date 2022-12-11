@@ -21,20 +21,22 @@
 \headcommand {\sectionentry {3}{Kako bilo ko može da koristi AI za generisanje slika}{7}{Kako bilo ko može da koristi AI za generisanje slika}{0}}
 \headcommand {\slideentry {3}{0}{1}{7/7}{}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\beamer@sectionpages {7}{7}}
-\headcommand {\beamer@subsectionpages {7}{7}}
-\headcommand {\sectionentry {4}{Etički problemi sa veštačko inteligentnim generatorima slika}{8}{Etički problemi sa veštačko inteligentnim generatorima slika}{0}}
-\headcommand {\beamer@subsectionpages {8}{7}}
-\headcommand {\beamer@subsectionentry {0}{4}{1}{8}{Autorska prava}}
-\headcommand {\slideentry {4}{1}{1}{8/8}{Autorska prava}{0}}
+\headcommand {\slideentry {3}{0}{2}{8/8}{}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\beamer@sectionpages {8}{8}}
-\headcommand {\beamer@subsectionpages {8}{8}}
-\headcommand {\sectionentry {5}{Zaključak}{9}{Zaključak}{0}}
-\headcommand {\slideentry {5}{0}{1}{9/9}{}{0}}
+\headcommand {\beamer@sectionpages {7}{8}}
+\headcommand {\beamer@subsectionpages {7}{8}}
+\headcommand {\sectionentry {4}{Etički problemi sa veštačko inteligentnim generatorima slika}{9}{Etički problemi sa veštačko inteligentnim generatorima slika}{0}}
+\headcommand {\beamer@subsectionpages {9}{8}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{9}{Autorska prava}}
+\headcommand {\slideentry {4}{1}{1}{9/9}{Autorska prava}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\beamer@partpages {1}{9}}
-\headcommand {\beamer@subsectionpages {9}{9}}
 \headcommand {\beamer@sectionpages {9}{9}}
-\headcommand {\beamer@documentpages {9}}
-\headcommand {\gdef \inserttotalframenumber {8}}
+\headcommand {\beamer@subsectionpages {9}{9}}
+\headcommand {\sectionentry {5}{Zaključak}{10}{Zaključak}{0}}
+\headcommand {\slideentry {5}{0}{1}{10/10}{}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\beamer@partpages {1}{10}}
+\headcommand {\beamer@subsectionpages {10}{10}}
+\headcommand {\beamer@sectionpages {10}{10}}
+\headcommand {\beamer@documentpages {10}}
+\headcommand {\gdef \inserttotalframenumber {9}}

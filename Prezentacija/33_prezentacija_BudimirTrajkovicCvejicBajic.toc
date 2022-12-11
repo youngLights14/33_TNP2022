@@ -2,6 +2,6 @@
 \beamer@sectionintoc {1}{Uvod}{5}{0}{1}
 \beamer@sectionintoc {2}{Kako funkcioniše i kako se trenira}{6}{0}{2}
 \beamer@sectionintoc {3}{Kako bilo ko može da koristi AI za generisanje slika}{7}{0}{3}
-\beamer@sectionintoc {4}{Etički problemi sa veštačko inteligentnim generatorima slika}{8}{0}{4}
-\beamer@subsectionintoc {4}{1}{Autorska prava}{8}{0}{4}
-\beamer@sectionintoc {5}{Zaključak}{9}{0}{5}
+\beamer@sectionintoc {4}{Etički problemi sa veštačko inteligentnim generatorima slika}{9}{0}{4}
+\beamer@subsectionintoc {4}{1}{Autorska prava}{9}{0}{4}
+\beamer@sectionintoc {5}{Zaključak}{10}{0}{5}
