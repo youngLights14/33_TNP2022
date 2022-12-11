@@ -1,4 +1,4 @@
-\babel@toc {serbian}{}
+\babel@toc {serbian}{}\relax 
 \beamer@sectionintoc {1}{Uvod}{5}{0}{1}
 \beamer@sectionintoc {2}{Kako funkcioniše i kako se trenira}{6}{0}{2}
 \beamer@sectionintoc {3}{Kako bilo ko može da koristi AI za generisanje slika}{7}{0}{3}
