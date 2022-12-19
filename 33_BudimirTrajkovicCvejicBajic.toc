@@ -6,6 +6,6 @@
 \contentsline {section}{\numberline {4}Kako bilo ko može da koristi AI za generisanje slika}{6}{section.4}%
 \contentsline {subsection}{\numberline {4.1}DALL-E 2}{7}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Midjourney}{7}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Etički problemi sa veštačko inteligentnim generatorima slika}{7}{section.5}%
+\contentsline {section}{\numberline {5}Etički problemi sa veštačko inteligentnim generatorima slika}{8}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Problem autorskih prava}{8}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Zaključak}{8}{section.6}%
+\contentsline {section}{\numberline {6}Zaključak}{9}{section.6}%

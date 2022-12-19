@@ -6,7 +6,7 @@
 \begin{document}
 
 \title{AI koji generiše sliku na osnovu teksta}
-\author{Budimir Nkola 178/2021\\ \and Trajković Miljan 354/2022 \and Cvejić Miloš 346/2021\\ \and Bajić Bogdan 122/2021}
+\author{Budimir Nikola 178/2021\\ \and Trajković Miljan 354/2022 \and Cvejić Miloš 346/2021\\ \and Bajić Bogdan 122/2021}
 \maketitle
 
 \begin{abstract}
@@ -29,7 +29,7 @@ Mašinsko učenje predstavlja podoblast veštačke inteligencije. Ono omogućava
 
   
 
-Pristupi mašinskom učenju se generalno dele u tri različite kategorije, u zavisnosti od prirode signala ili povratne informacije dostupne sistemu učenja. To su: učenje pod nadzorom (eng. supervised learning), polunadgledano učenje (eng. semi-supervised learning), učenje bez nadzora (unsupervised learning) i učenje potkrepljenjem (reinforcement learning).  
+Pristupi mašinskom učenju se generalno dele u tri različite kategorije, u zavisnosti od prirode signala ili povratne informacije dostupne sistemu učenja. To su: učenje pod nadzorom (eng. supervised learning), učenje bez nadzora (unsupervised learning) i učenje potkrepljenjem (reinforcement learning).  
 
   
 
@@ -60,14 +60,14 @@ GANs su modeli mašinskog učenja obično sačinjeni od dve mreže, \textit{disk
 
 Ključna razlika između ovako opisanih mreža i najnovijih AI generatora slika je ta što se klasični GAN modeli obično razvijaju za neku konkretnu kategoriju fotografija(npr. popularni generator ljudskih lica) dok na drugoj strani generatori poput DALL-E 2 su mnogo opštije namene.
 
-Arhitekture najnovijih generatora zasnovane su na jednoj od novijih tehnika nazvanoj difuzija(eng. diffusion) koja je inspirisana oblašću iz fizike - neravnotežna termodinamika. Naime, ako sipamo kap farbe u vodu, zakoni fizike nalažu da će ta kap da \textit{difunduje}\footnote{Difundovanje - proces spontanog raspršivanja materije i energije, prelazak iz zone više u zonu niže energije ili koncentracije} sve dok ne dođe u ravnotežu. Ovaj proces u prirodi je ireverzibilan. U mašinskom učenju, modeli difuzije nastoje da reše upravo ovaj problem, odnosno da nađu način kojim mogu doći do početne kapi farbe \cite{difvideo}.
+Arhitekture najnovijih generatora zasnovane su na jednoj od novijih tehnika nazvanoj difuzija(eng. diffusion) koja je inspirisana oblašću iz fizike - neravnotežna termodinamika. Naime, ako sipamo kap farbe u vodu, zakoni fizike nalažu da će ta kap da \textit{difunduje}\footnote{Difundovanje - proces raspršivanja materije i energije, prelazak iz zone više u zonu niže energije ili koncentracije} sve dok ne dođe u ravnotežu. Ovaj proces u prirodi je ireverzibilan. U mašinskom učenju, modeli difuzije nastoje da reše upravo ovaj problem, odnosno da nađu način kojim mogu doći do početne kapi farbe \cite{difvideo}.
 
 \subsection{Pregled arhitekture DALL-E 2 softvera}
 
 Za pocetak posmatraćemo takozvanu CLIP mrežu (skraćeno od Contrastive Language–Image Pre-training). Njen osnovni zadatak je da zadatu sliku poveže sa odgovarajućim unetim opisom. Primetimo da se na neki način generisanje slika može smatrati suprotnim procesom od pomenutog. Na ulazu CLIP mreže nalaze se dva kodera koji kodiraju zadatu sliku i njen opis u odgovarajući \textit{imbeding}\footnote{imbeding (eng. embedding) - rezultat preslikavanja skupa informacija u računarski zapis, vektor}, zasebice. Prilikom treniranja, CLIP nastoji da pomenute kodere nauči da imbeding slike i imbeding njenog opisa budu što sličniji jedan drugom\cite{openai_dali}.
 
 
-Sama arhitektura Dall-E 2 softvera se sastoji iz dva dela: Prvi deo čini mreža prior\footnote{prior - označava ono što je pre nečega po redu ili hronološki.} koji na ulazu prima tekst imbeding (formiran CLIP kodiranjem tekstualnog opisa željene slike) koji preslikava u imbeding slike koji prosleđuje drugom delu ovog generatora - dekoderu. Sada dolazimo do ključnog značaja CLIP mreže. OpenAI tim se zapitao, da li je prior u ovom pristupu uopšte potreban. Iz tog razloga pokušali su da dekoderu proslede samo tekstualni opis, zatim tekstualni opis i tekst imbeding, a na kraju i imbeding slike dobijen pomoću prior-a. Iz tog eksperimenta su zaključili da slike generisane imbedingom slike daju značajno bolje rezulate u odnosu na druga dva slučaja.
+Sama arhitektura Dall-E 2 softvera se sastoji iz dva dela kao što se može videti na slici \ref{fig: dalle2slika}. Prvi deo čini mreža prior\footnote{prior - označava ono što je pre nečega po redu, hronološki.} koji na ulazu prima tekst imbeding (formiran CLIP kodiranjem tekstualnog opisa željene slike) koji preslikava u imbeding slike koji prosleđuje drugom delu ovog generatora - dekoderu. Dolazimo do ključnog značaja CLIP mreže. OpenAI tim se zapitao, da li je prior u ovom pristupu uopšte potreban. Iz tog razloga pokušali su da dekoderu proslede samo tekstualni opis, zatim tekstualni opis i tekst imbeding, a na kraju i imbeding slike dobijen pomoću prior-a. Iz tog eksperimenta su zaključili da slike generisane imbedingom slike daju značajno bolje rezulate u odnosu na druga dva slučaja.
 
 Dekoder je generativni model realizovan pomenutom tehnikom difuzuje. Naime, slike se generišu iz nasumične količine \textit{Gausovog šuma}\footnote{Gausov šum (engl. Gaussian noise) - šum raspoređen korišćenjem Gausove normalne raspodele}. Zadatak generatornog dela je da pretpostavi koliko šuma je na slici i otkloni ga. Ovo je vrlo težak problem koji se uspešno rešava upravo difuzno i to na sledeći način: Otklanjanje šuma vrši se iterativno. U svakoj iteraciji pretpostavlja se koliko šuma je na slici koji se otklanja, a zatim se na dobijenu sliku dodaje skoro malo manja količina Gausovog šuma od prethodnog i prelazi u sledeću iteraciju. Kako bi dekoder znao šta uopšte treba da generiše, odnosno “šta se nalazi ispod šuma” prosleđuje mu se uslov. Kod ranijih projekata kao što su GLIDE i DALL-E \cite{openai_glide}, dekoderu se kao uslov direktno prosleđivao tekstualni opis željene slike. Dok se kod ovog modela zahvaljujući CLIP i prior mreži generatoru dodatno prosleđuju CLIP imbeding slike i teksta. Generisanje različitih slika i variranje u odnosu na jednu generisanu sliku se postiže tako što se dobijena slika propušta kroz CLIP koder kako bi se dobio njen imbeding slike, a onda se proces generisanja ponavlja sa novonastalim imbedingom. Na ovaj način dobija se slika koja ima iste elemente i stil prethodne slike, a različit raspored i neke trivijalne detalje koji se gube CLIP kodiranjem. Izlaz opisanog dela dekodera je slika formata 64x64\cite{openai_dali}.
 
@@ -104,8 +104,9 @@ Dok su neki od izazova da bez obzira na kvalitet slika, one ipak iza sebe neće 
 Da biste koristili DALL-E 2, sve što je potrebno jeste da se ulogujete na sajt. Dužina samog opisa tj. \textit{prompt-a}\footnote{eng. to prompt - navesti} je 400 karaktera, a sam prompt može da primi \textit{sadržaj} i \textit{modifikatore}. Sadržaj je npr. \textit{"usamljeni astrounaut na Marsu"}, a modifikator \textit{"misteriozno, sa puno boja, hiperrealistično"} (naravno, podrazumeva se da se reči unose na engleskom). 
 
 \subsection{Midjourney}
-\textbf{Midjourney} je AI alatka koja funkcioniše isključivo na digitalnoj platformi Discord\footnote{Discord(transkribovano Diskord) je platforma namenjena za komunikaciju.}. Ako imate nalog na Diskordu, sve što treba da uradite jeste da se prijavite preko zvaničnog sajta za Midjourney. Sam  AI funkcioniše slično kao i prethodno pomenuti DALL-E 2 samo što se ceo proces ne odvija na sajtu već u aplikaciji. Midjourney uvek generiše 4 slične slike. Ako vam se rezultat dopao, možete da povećate rezoluciju slike, ili da tražite da generiše novu. Ono po čemu se razlikuje od DALL-E 2 je što se manje fokusira na realizam a više na maštovitiju i raznobojniju kreaciju.
+\textbf{Midjourney} je AI alatka koja funkcioniše isključivo na digitalnoj platformi Discord\footnote{Discord(transkribovano Diskord) je platforma namenjena za komunikaciju.}. Ako imate nalog na Diskordu, sve što treba da uradite jeste da se prijavite preko zvaničnog sajta za Midjourney. Sam  AI funkcioniše slično kao i prethodno pomenuti DALL-E 2 samo što se ceo proces ne odvija na sajtu već u aplikaciji. Midjourney uvek generiše 4 slične slike. Ako vam se rezultat dopao, možete da povećate rezoluciju slike, ili da tražite da generiše novu. Ono po čemu se razlikuje od DALL-E 2 je što se manje fokusira na realizam a više na maštovitiju i raznobojniju kreaciju. U sledećoj tabeli nalaze se linkovi do prethodno pomenutih generatora \ref{fig: tabela}.
 
+\begin{table}[htp]
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
  \hline
@@ -113,7 +114,9 @@ Da biste koristili DALL-E 2, sve što je potrebno jeste da se ulogujete na sajt.
  Midjourney & \href{https://www.midjourney.com/}{midjourney.com} \\
  \hline
 \end{tabular}
+\caption{\label{fig: tabela}Tabela linkova do pomenutih sajtova}
 \end{center}
+\end{table}
 
 \section{Etički problemi sa veštačko inteligentnim generatorima slika}
 
